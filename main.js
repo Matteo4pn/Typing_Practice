@@ -1,46 +1,46 @@
 const words = [
-  'cat',
-  'zebra',
-  'dog',
-  'elephant',
-  'fox',
-  'car',
-  'books',
-  'chicken',
-  'dogs',
-  'cats',
-  'zebras',
-  'dog',
-  'desk',
-  'window',
-  'pen',
-  'keyboard',
-  'juice',
-  'orange',
-  'banana'
+  "cat",
+  "zebra",
+  "dog",
+  "elephant",
+  "fox",
+  "car",
+  "books",
+  "chicken",
+  "dogs",
+  "cats",
+  "zebras",
+  "dog",
+  "desk",
+  "window",
+  "pen",
+  "keyboard",
+  "juice",
+  "orange",
+  "banana",
 ];
 
 const numWordsPerIteration = 2;
-let currentSentence = '';
+let currentSentence = "";
 let currentIndex = 0;
 let completedSentences = 0;
 let badLetterCount = 0;
-
+let startTime;
 
 // Create random sentence
 const getRandomSentence = () => {
   const randomIndex = Math.floor(
     Math.random() * (words.length - numWordsPerIteration + 1)
   );
-  return words.slice(randomIndex, randomIndex + numWordsPerIteration).join(' ');
+  return words.slice(randomIndex, randomIndex + numWordsPerIteration).join(" ");
 };
 
 // Chceck what key was pressed
 const readKeyPressed = () => {
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     const keyPressed = event.key;
     // Check if the pressed key is not the backspace key. If not, continue. If yes, ignore it.
-    if (keyPressed !== 'Backspace') {
+    if (keyPressed !== "Backspace") {
       checkInput(keyPressed);
     }
   });
@@ -48,42 +48,48 @@ const readKeyPressed = () => {
 
 // If input = sentence letter color it green and if not - red.
 const checkInput = (keyPressed) => {
-  const content = document.getElementById('random-sentence');
+  const content = document.getElementById("random-sentence");
 
   if (currentSentence[currentIndex] === keyPressed) {
-    console.log('good letter');
-    content.children[currentIndex].style.color = 'green';
+    console.log("good letter");
+    content.children[currentIndex].style.color = "green";
     currentIndex++;
 
     if (currentIndex >= currentSentence.length) {
-      console.log('Congratulations! You completed the sentence.');
+      const endTime = new Date(); // Record the end time
+      const completionTimeMs = endTime - startTime; // Calculate completion time in milliseconds
+      const completionTimeSec = completionTimeMs / 1000; // Convert to seconds
+      
+      document.getElementById('completion-time').innerHTML = `${completionTimeSec.toFixed(2)} s`;
+      console.log(`Completion time: ${completionTimeSec.toFixed(2)} seconds`);
       completedSentences++;
-      document.getElementById('sentences-number').textContent =
+      document.getElementById("sentences-number").textContent =
         completedSentences;
       displaySentence();
       currentIndex = 0;
     }
   } else {
-    console.log('bad letter');
-    content.children[currentIndex].style.color = 'red';
+    console.log("bad letter");
+    content.children[currentIndex].style.color = "red";
     badLetterCount++; // Increment badLetterCount
-    document.getElementById('bad-letters-number').textContent = badLetterCount; // Display badLetterCount
+    document.getElementById("bad-letters-number").textContent = badLetterCount; // Display badLetterCount
   }
 };
 
 const displaySentence = () => {
+  startTime = new Date(); 
   currentSentence = getRandomSentence();
-  const sentenceElement = document.getElementById('random-sentence');
+  const sentenceElement = document.getElementById("random-sentence");
   const sentenceHTML = currentSentence
-    .split('')
+    .split("")
     .map((letter) => {
-      if (letter === ' ') {
+      if (letter === " ") {
         return '<span class="space">_</span>';
       } else {
         return `<span>${letter}</span>`;
       }
     })
-    .join('');
+    .join("");
   sentenceElement.innerHTML = sentenceHTML;
 };
 
