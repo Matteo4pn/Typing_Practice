@@ -1,23 +1,42 @@
 const words = [
-  "cat",
-  "zebra",
-  "dog",
-  "elephant",
-  "fox",
-  "car",
-  "books",
-  "chicken",
-  "dogs",
-  "cats",
-  "zebras",
-  "dog",
-  "desk",
-  "window",
-  "pen",
-  "keyboard",
-  "juice",
-  "orange",
-  "banana",
+  "dog", "cat", "lion",
+  
+  // Random words
+  "car", "house", "book",
+  "computer", "shoe", "tree",
+  "river", "mountain", "ocean",
+  "chair", "table", "lamp",
+  "phone", "guitar", "flower",
+  "sun", "moon", "star",
+  "cloud", "bird", "fish",
+  "bear", "elephant", "tiger",
+  "apple", "banana", "orange",
+  "pizza", "cake", "cookie",
+  "train", "plane", "bus",
+  "pen", "pencil", "marker",
+  "mirror", "clock", "wallet",
+  "key", "lock", "door",
+  "window", "mirror", "frame",
+  "painting", "radio", "fan",
+  "bottle", "cup", "plate",
+  "spoon", "fork", "knife",
+  "chair", "table", "sofa",
+  "hat", "glove", "scarf",
+  "sock", "shoe", "boot",
+  "jacket", "shirt", "pants",
+  "skirt", "dress", "tie",
+  "bag", "backpack", "purse",
+  "hat", "glasses", "umbrella",
+  "ring", "bracelet", "necklace",
+  "watch", "belt", "wallet",
+  "shampoo", "soap", "toothbrush",
+  "toothpaste", "towel", "comb",
+  "brush", "mirror", "razor",
+  "perfume", "lotion", "cream",
+  "soap", "shampoo", "conditioner",
+  "toothpaste", "toothbrush", "floss",
+  "towel", "bathrobe", "slippers",
+  "mirror", "hairdryer", "curling iron",
 ];
 
 const numWordsPerIteration = 2;
@@ -26,6 +45,7 @@ let currentIndex = 0;
 let completedSentences = 0;
 let badLetterCount = 0;
 let startTime;
+let bestCompletionTime = Infinity;
 
 // Create random sentence
 const getRandomSentence = () => {
@@ -59,7 +79,13 @@ const checkInput = (keyPressed) => {
       const endTime = new Date(); // Record the end time
       const completionTimeMs = endTime - startTime; // Calculate completion time in milliseconds
       const completionTimeSec = completionTimeMs / 1000; // Convert to seconds
-      
+
+      if (completionTimeSec < bestCompletionTime) {
+        bestCompletionTime = completionTimeSec;
+        document.getElementById("best-completion-time").textContent =
+          `Best: ${bestCompletionTime.toFixed(2)} s`;
+      }
+
       document.getElementById('completion-time').innerHTML = `${completionTimeSec.toFixed(2)} s`;
       console.log(`Completion time: ${completionTimeSec.toFixed(2)} seconds`);
       completedSentences++;
