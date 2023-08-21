@@ -1,12 +1,18 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(255, 214, 163);
+  background-image: url('https://i.imgur.com/Kbbfhw6.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  height: 100vh; /* Set body height to 100% of viewport height */
+  width: 100vw; /* Set body width to 100% of viewport width */
+  margin: 0; /* Reset default margin */
+  padding: 0; /* Reset default padding */
 }
-
 
 #random-sentence {
   text-align: center;
-  font-size: 34px;
+  font-size: 42px;
   font-weight: bold;
   margin-top: 5%;
 }
@@ -15,22 +21,36 @@ body {
   display: none;
 }
 
-
-/* #sentences {
+ul {
+  list-style-type: none; /* delete dots in line elements */
+  margin-top: 5%;
+  margin: 0;
+  padding: 0;
   display: flex;
-  align-items: center;
-  margin-top: 5%;
-  margin-left: 10%;
-} */
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 25vh;
+  font-size: 25px;
+  font-weight: bold;
+}
 
-
-#complited-sentences,
-#bad-letters,
-#time {
-  display:inline-block;
+li {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-top: 5%;
-  margin-right: 20px;
-  display: inline-block;
-  margin-right: 20px; /* Adjust this value as needed for spacing */
+}
+
+button {
+  margin: auto;
+  justify-content: center;
+  margin-top: 20%; 
+  font-size: 15px;
+  display: flex;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: rgb(236, 236, 236);
+  background: linear-gradient(to right, #ff5b5b, #ffb54e);
+  cursor: pointer;
 }

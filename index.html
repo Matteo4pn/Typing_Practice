@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Typing practice</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <section class="sentences">
-      <ul id="data">
-        <li id="complited-sentences">
-          Sentences completed:
-          <p id="sentences-number">0</p>
-        </li>
-        <li id="bad-letters">
-          Bad letters inputted:
-          <p id="bad-letters-number">0</p>
-        </li>
-        <li id="time">
-          Completion time:
-          <p id="completion-time">0</p>
-        </li>
-        <li id="best-completion-time">
-          Best completion time:
-          <p>0</p>
-        </li>
-      </ul>
-      <div id="random-sentence"></div>
-    </section>
-    <section>
-      <div id="sentence-container"></div>
-      <input type="text" id="user-input" />
-    </section>
-    <script src="main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typing practice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <section class="container">
+    <ul id="data">
+      <li id="complited-sentences">
+        Sentences completed
+        <p id="sentences-number">0</p>
+      </li>
+      <li id="bad-letters">
+        Bad letters inputted
+        <p id="bad-letters-number">0</p>
+      </li>
+      <li id="time">
+        Completion time
+        <p id="completion-time">0</p>
+      </li>
+      <li id="best-completion-time">
+        Best completion time
+        <p id="best-completion-time-number">0</p>
+      </li>
+    </ul>
+    <div id="random-sentence"></div>
+  </section>
+  <section>
+    <div id="sentence-container"></div>
+    <input type="text" id="user-input" />
+  </section>
+  <button id="sign">@ Created by Mateusz Pindelski</button>
+  <script src="main.js"></script>
+</body>
+
 </html>
