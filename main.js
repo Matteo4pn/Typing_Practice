@@ -1,130 +1,129 @@
 const words = [
-  'dog',
-  'cat',
-  'lion',
-  'car',
-  'house',
-  'book',
-  'computer',
-  'shoe',
-  'tree',
-  'river',
-  'mountain',
-  'ocean',
-  'chair',
-  'table',
-  'lamp',
-  'phone',
-  'guitar',
-  'flower',
-  'sun',
-  'moon',
-  'star',
-  'cloud',
-  'bird',
-  'fish',
-  'bear',
-  'elephant',
-  'tiger',
-  'apple',
-  'banana',
-  'orange',
-  'pizza',
-  'cake',
-  'cookie',
-  'train',
-  'plane',
-  'bus',
-  'pen',
-  'pencil',
-  'marker',
-  'mirror',
-  'clock',
-  'wallet',
-  'key',
-  'lock',
-  'door',
-  'window',
-  'mirror',
-  'frame',
-  'painting',
-  'radio',
-  'fan',
-  'bottle',
-  'cup',
-  'plate',
-  'spoon',
-  'fork',
-  'knife',
-  'chair',
-  'table',
-  'sofa',
-  'hat',
-  'glove',
-  'scarf',
-  'sock',
-  'shoe',
-  'boot',
-  'jacket',
-  'shirt',
-  'pants',
-  'skirt',
-  'dress',
-  'tie',
-  'bag',
-  'backpack',
-  'purse',
-  'hat',
-  'glasses',
-  'umbrella',
-  'ring',
-  'bracelet',
-  'necklace',
-  'watch',
-  'belt',
-  'wallet',
-  'shampoo',
-  'soap',
-  'toothbrush',
-  'toothpaste',
-  'towel',
-  'comb',
-  'brush',
-  'mirror',
-  'razor',
-  'perfume',
-  'lotion',
-  'cream',
-  'soap',
-  'shampoo',
-  'conditioner',
-  'toothpaste',
-  'toothbrush',
-  'floss',
-  'towel',
-  'bathrobe',
-  'slippers',
-  'mirror',
-  'hairdryer',
-  'curling iron'
+  "dog",
+  "cat",
+  "lion",
+  "car",
+  "house",
+  "book",
+  "computer",
+  "shoe",
+  "tree",
+  "river",
+  "mountain",
+  "ocean",
+  "chair",
+  "table",
+  "lamp",
+  "phone",
+  "guitar",
+  "flower",
+  "sun",
+  "moon",
+  "star",
+  "cloud",
+  "bird",
+  "fish",
+  "bear",
+  "elephant",
+  "tiger",
+  "apple",
+  "banana",
+  "orange",
+  "pizza",
+  "cake",
+  "cookie",
+  "train",
+  "plane",
+  "bus",
+  "pen",
+  "pencil",
+  "marker",
+  "mirror",
+  "clock",
+  "wallet",
+  "key",
+  "lock",
+  "door",
+  "window",
+  "frame",
+  "painting",
+  "radio",
+  "fan",
+  "bottle",
+  "cup",
+  "plate",
+  "spoon",
+  "fork",
+  "knife",
+  "sofa",
+  "hat",
+  "glove",
+  "scarf",
+  "sock",
+  "boot",
+  "jacket",
+  "shirt",
+  "pants",
+  "skirt",
+  "dress",
+  "tie",
+  "bag",
+  "backpack",
+  "purse",
+  "glasses",
+  "umbrella",
+  "ring",
+  "bracelet",
+  "necklace",
+  "watch",
+  "belt",
+  "shampoo",
+  "soap",
+  "toothbrush",
+  "toothpaste",
+  "towel",
+  "comb",
+  "brush",
+  "razor",
+  "perfume",
+  "conditioner",
+  "floss",
+  "bathrobe",
+  "slippers",
+  "hairdryer",
+  "curling iron",
 ];
 
 const numWordsPerIteration = 2;
-let currentSentence = '';
+let currentSentence = "";
 let currentIndex = 0;
 let completedSentences = 0;
 let badLetterCount = 0;
 let startTime;
 let bestCompletionTime = Infinity;
+let correctTypedLetters = 0;
+let totalTypedLetters = 0;
+let correctTypedLettersThisSentence = 0;
+let totalTypedLettersThisSentence = 0;
 
-const siteLink = document.getElementById('sign');
+const siteLink = document.getElementById("sign");
 
-siteLink.addEventListener('click', () => {
-  window.location.href = 'https://www.mpindelski.com/';
+window.addEventListener("load", () => {
+  let popup = document.getElementById("popup");
+  const closeButton = document.getElementById("closePopup");
+
+  // Show the popup automatically when the page loads
+  popup.style.display = "flex";
+
+  // Add an event listener to the close button
+  closeButton.addEventListener("click", () => {
+    popup.style.display = "none"; // Hide the popup when close button is clicked
+  });
 });
 
-
-
+siteLink.addEventListener("click", () => {
+  window.location.href = "https://www.mpindelski.com/";
+});
 
 // Create random sentence
 const getRandomSentence = () => {
@@ -133,28 +132,43 @@ const getRandomSentence = () => {
   );
   return words
     .slice(randomIndex, randomIndex + numWordsPerIteration + 3)
-    .join(' ');
+    .join(" ");
 };
 
 // Chceck what key was pressed
 const readKeyPressed = () => {
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     const keyPressed = event.key;
     // Check if the pressed key is not the backspace key. If not, continue. If yes, ignore it.
-    if (keyPressed !== 'Backspace') {
+    if (keyPressed !== "Backspace") {
       checkInput(keyPressed);
     }
   });
 };
+const calculateAccuracyFunction = () => {
+  // Calculate accuracy for this sentence
+  const accuracyThisSentence =
+    (correctTypedLettersThisSentence / totalTypedLettersThisSentence) * 100;
+  document.getElementById(
+    "accuracy-number"
+  ).textContent = `${accuracyThisSentence.toFixed(2)}%`;
+
+  // Reset counters for the next sentence
+  correctTypedLettersThisSentence = 0;
+  totalTypedLettersThisSentence = 0;
+};
 
 // If input = sentence letter color it green and if not - red.
 const checkInput = (keyPressed) => {
-  const content = document.getElementById('random-sentence');
+  const content = document.getElementById("random-sentence");
+  totalTypedLetters++;
+  totalTypedLettersThisSentence++;
 
   if (currentSentence[currentIndex] === keyPressed) {
-    console.log('good letter');
-    content.children[currentIndex].style.color = 'green';
+    content.children[currentIndex].style.color = "green";
     currentIndex++;
+    correctTypedLetters++;
+    correctTypedLettersThisSentence++;
 
     if (currentIndex >= currentSentence.length) {
       const endTime = new Date(); // Record the end time
@@ -164,29 +178,29 @@ const checkInput = (keyPressed) => {
       if (completionTimeSec < bestCompletionTime) {
         bestCompletionTime = completionTimeSec;
         document.getElementById(
-          'best-completion-time-number'
+          "best-completion-time-number"
         ).innerHTML = `${bestCompletionTime.toFixed(2)} s`;
       }
 
       document.getElementById(
-        'completion-time'
+        "completion-time"
       ).innerHTML = `${completionTimeSec.toFixed(2)} s`;
-      console.log(`Completion time: ${completionTimeSec.toFixed(2)} s`);
       completedSentences++;
-      document.getElementById('sentences-number').textContent =
+      document.getElementById("sentences-number").textContent =
         completedSentences;
       displaySentence();
       currentIndex = 0;
+      calculateAccuracyFunction();
     }
   } else {
-    console.log('bad letter');
-    content.children[currentIndex].style.color = 'red';
+    content.children[currentIndex].style.color = "red";
     badLetterCount++; // Increment badLetterCount
-    document.getElementById('bad-letters-number').textContent = badLetterCount; // Display badLetterCount
+    document.getElementById("bad-letters-number").textContent = badLetterCount; // Display badLetterCount
     currentIndex++;
     if (currentIndex >= currentSentence.length) {
       displaySentence();
       currentIndex = 0;
+      calculateAccuracyFunction();
     }
   }
 };
@@ -194,17 +208,17 @@ const checkInput = (keyPressed) => {
 const displaySentence = () => {
   startTime = new Date();
   currentSentence = getRandomSentence();
-  const sentenceElement = document.getElementById('random-sentence');
+  const sentenceElement = document.getElementById("random-sentence");
   const sentenceHTML = currentSentence
-    .split('')
+    .split("")
     .map((letter) => {
-      if (letter === ' ') {
-        return '<span class="space">_</span>';
+      if (letter === " ") {
+        return '<span class="space"> ⸱ </span>';
       } else {
         return `<span>${letter}</span>`;
       }
     })
-    .join('');
+    .join("");
   sentenceElement.innerHTML = sentenceHTML;
 };
 

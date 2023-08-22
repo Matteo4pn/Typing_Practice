@@ -1,6 +1,6 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-image: url('https://i.imgur.com/uCRCUMP.jpg');
+  font-family: "Courier New", Courier, monospace;
+  background-image: url("https://i.imgur.com/uCRCUMP.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -8,6 +8,46 @@ body {
   width: 100vw; /* Set body width to 100% of viewport width */
   margin: 0; /* Reset default margin */
   padding: 0; /* Reset default padding */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+#closePopup {
+  margin: auto;
+  justify-content: center;
+  font-size: 15px;
+  display: flex;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: rgb(236, 236, 236);
+  background: linear-gradient(to right, #ff5b5b, #ffb54e);
+  cursor: pointer;
+}
+
+.stat {
+  text-align: left;
+  margin: 0px 300px;
+  width: 100%;
+  max-width: 400px; /* Adjust the max-width as needed */
 }
 
 #random-sentence {
@@ -41,10 +81,10 @@ li {
   align-items: center;
 }
 
-button {
+#sign {
   margin: auto;
   justify-content: center;
-  margin-top: 20%; 
+  margin-top: 20%;
   font-size: 15px;
   display: flex;
   padding: 10px 20px;

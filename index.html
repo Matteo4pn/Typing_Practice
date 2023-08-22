@@ -1,42 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing practice</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://i.imgur.com/YYJolfW.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Typing practice</title>
-  <link rel="icon" type="image/x-icon" href="https://i.imgur.com/YYJolfW.png">
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <h2>Typing Practice Instructions</h2>
+        <p>Here's how it works...</p>
+        <p>This web app helps you improve your typing skills.</p>
+        <p>Just start typing and aim for accuracy and speed.</p>
 
-<body>
-  <section class="container">
-    <ul id="data">
-      <li id="complited-sentences">
-        Completed
-        <p id="sentences-number">0</p>
-      </li>
-      <li id="bad-letters">
-        Mistakes
-        <p id="bad-letters-number">0</p>
-      </li>
-      <li id="time">
-        Speed
-        <p id="completion-time">0</p>
-      </li>
-      <li id="best-completion-time">
-        Best time
-        <p id="best-completion-time-number">0</p>
-      </li>
-    </ul>
-    <div id="random-sentence"></div>
-  </section>
-  <section>
-    <div id="sentence-container"></div>
-    <input type="text" id="user-input" />
-  </section>
-  <button id="sign">@ Created by Mateusz Pindelski</button>
-  <script src="main.js"></script>
-</body>
+        <p>Stats you'll see:</p>
+        <div class="stat">
+          <p>
+            - <strong>Completed:</strong> The number of sentences you've
+            completed.
+          </p>
+          <p>
+            - <strong>Mistakes:</strong> The number of mistakes you've made
+            during your session.
+          </p>
+          <p>
+            - <strong>Speed:</strong> The completion time of your last sentence.
+          </p>
+          <p>
+            - <strong>Best Time:</strong> Your fastest completion time during
+            this session.
+          </p>
+          <p>- <strong>Accuracy:</strong> Accuracy of your last sentance.</p>
+        </div>
+        <p>Enjoy practicing and enhancing your typing skills! :)</p>
 
+        <button id="closePopup">Close</button>
+      </div>
+    </div>
+    <section class="container">
+      <ul id="data">
+        <li id="complited-sentences">
+          Completed
+          <p id="sentences-number">0</p>
+        </li>
+        <li id="bad-letters">
+          Mistakes
+          <p id="bad-letters-number">0</p>
+        </li>
+        <li id="time">
+          Speed
+          <p id="completion-time">0</p>
+        </li>
+        <li id="best-completion-time">
+          Best time
+          <p id="best-completion-time-number">0</p>
+        </li>
+        <li id="accuracy">
+          Accuracy
+          <p id="accuracy-number">0</p>
+        </li>
+      </ul>
+      <div id="random-sentence"></div>
+    </section>
+    <section>
+      <div id="sentence-container"></div>
+      <input type="text" id="user-input" />
+    </section>
+    <button id="sign">Created by Mateusz Pindelski</button>
+    <script src="main.js"></script>
+  </body>
 </html>
