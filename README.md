@@ -1,6 +1,6 @@
 # Typing Practice Web App
 
-A simple web application for practicing typing sentences. Improve your typing skills by completing sentences as quickly and accurately as possible.
+This is a web application for practicing typing sentences. Improve your typing skills by completing sentences as quickly and accurately as possible.
 
 ![App Screenshot](https://i.imgur.com/HtXCMDV.png)
 
