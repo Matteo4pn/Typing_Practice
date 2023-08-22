@@ -2,7 +2,7 @@
 
 This is a web application for practicing typing sentences. Improve your typing skills by completing sentences as quickly and accurately as possible.
 
-![App Screenshot](https://i.imgur.com/HtXCMDV.png)
+![App Screenshot](https://i.imgur.com/60oW2vE.png)
 
 ## Features
 
@@ -24,6 +24,8 @@ This is a web application for practicing typing sentences. Improve your typing s
     cd typing-practice-app
     ```
     Open index.html in your web browser to use the app.
+
+   ![App Screenshot](https://i.imgur.com/zUjY0wu.png)
 
 ## Usage
 
