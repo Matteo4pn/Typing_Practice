@@ -169,41 +169,38 @@ const checkInput = (keyPressed) => {
     currentIndex++;
     correctTypedLetters++;
     correctTypedLettersThisSentence++;
-
-    if (currentIndex >= currentSentence.length) {
-      const endTime = new Date(); // Record the end time
-      const completionTimeMs = endTime - startTime; // Calculate completion time in milliseconds
-      const completionTimeSec = completionTimeMs / 1000; // Convert to seconds
-
-      if (completionTimeSec < bestCompletionTime) {
-        bestCompletionTime = completionTimeSec;
-        document.getElementById(
-          "best-completion-time-number"
-        ).innerHTML = `${bestCompletionTime.toFixed(2)} s`;
-      }
-
-      document.getElementById(
-        "completion-time"
-      ).innerHTML = `${completionTimeSec.toFixed(2)} s`;
-      completedSentences++;
-      document.getElementById("sentences-number").textContent =
-        completedSentences;
-      displaySentence();
-      currentIndex = 0;
-      calculateAccuracyFunction();
-    }
+    endSentence();
   } else {
     content.children[currentIndex].style.color = "red";
     badLetterCount++; // Increment badLetterCount
     document.getElementById("bad-letters-number").textContent = badLetterCount; // Display badLetterCount
     currentIndex++;
-    if (currentIndex >= currentSentence.length) {
-      completedSentences++;
-      document.getElementById("sentences-number").textContent = completedSentences;
-      displaySentence();
-      currentIndex = 0;
-      calculateAccuracyFunction();
+    endSentence();
+  }
+};
+
+const endSentence = () => {
+  if (currentIndex >= currentSentence.length) {
+    const endTime = new Date(); // Record the end time
+    const completionTimeMs = endTime - startTime; // Calculate completion time in milliseconds
+    const completionTimeSec = completionTimeMs / 1000; // Convert to seconds
+
+    if (completionTimeSec < bestCompletionTime) {
+      bestCompletionTime = completionTimeSec;
+      document.getElementById(
+        "best-completion-time-number"
+      ).innerHTML = `${bestCompletionTime.toFixed(2)} s`;
     }
+
+    document.getElementById(
+      "completion-time"
+    ).innerHTML = `${completionTimeSec.toFixed(2)} s`;
+    completedSentences++;
+    document.getElementById("sentences-number").textContent =
+      completedSentences;
+    displaySentence();
+    currentIndex = 0;
+    calculateAccuracyFunction();
   }
 };
 
