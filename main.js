@@ -198,6 +198,8 @@ const checkInput = (keyPressed) => {
     document.getElementById("bad-letters-number").textContent = badLetterCount; // Display badLetterCount
     currentIndex++;
     if (currentIndex >= currentSentence.length) {
+      completedSentences++;
+      document.getElementById("sentences-number").textContent = completedSentences;
       displaySentence();
       currentIndex = 0;
       calculateAccuracyFunction();
